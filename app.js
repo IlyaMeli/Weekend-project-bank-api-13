@@ -7,6 +7,13 @@ const app = express();
 app.use(express.json());
 app.use("/", userRoute);
 
+//
+const dotenv = require("dotenv");
+dotenv.config();
+
+const PASSWORD = process.env.PASSWORD;
+console.log(PASSWORD);
+//
 const port = process.env.PORT || 5000;
 
 const publicPath = path.join(__dirname, "client/build"); //www.ilyaRoot/client/bulid
