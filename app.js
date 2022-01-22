@@ -12,7 +12,7 @@ app.use("/", userRoute);
 
 const port = process.env.PORT || 5000;
 
-const publicPath = path.join(__dirname, "client/build"); //www.ilyaRoot/client/bulid
+const publicPath = path.join(__dirname, "client/build");
 app.use(cors());
 app.use(express.static(publicPath));
 
