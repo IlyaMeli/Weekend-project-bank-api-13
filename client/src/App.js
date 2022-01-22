@@ -10,10 +10,6 @@ function App() {
   const [creditValue, SetCreditValue] = useState(0);
   const [userIdForDeposit, setUserIdForDeposit] = useState("");
   const [userCashDeposit, setUserCashForDeposit] = useState("");
-  // console.log(process.env.NODE_ENV);
-
-  // const PASSWORD = process.env.PASSWORD;
-  // console.log(PASSWORD);
 
   const deposit = async () => {
     await myApi.put("/users/deposit", {
@@ -38,6 +34,9 @@ function App() {
     return myData.map((user) => {
       return (
         <div key={user._id} className="user-wrap">
+          <span>
+            <span className="user-title">_id:</span> {user._Id}
+          </span>
           <span>
             <span className="user-title">ID:</span> {user.userId}
           </span>
