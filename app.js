@@ -8,12 +8,13 @@ require("dotenv").config();
 //
 const app = express();
 app.use(express.json());
-app.use(cors());
+
 app.use("/", userRoute);
 
 const port = process.env.PORT || 5000;
 
 const publicPath = path.join(__dirname, "client/build");
+app.use(cors());
 app.use(express.static(publicPath));
 
 app.get("*", (req, res) => {
