@@ -12,6 +12,9 @@ function App() {
   const [userCashDeposit, setUserCashForDeposit] = useState("");
   // console.log(process.env.NODE_ENV);
 
+  const PASSWORD = process.env.PASSWORD;
+  console.log(PASSWORD);
+
   const deposit = async () => {
     await myApi.put("/users/deposit", {
       id: userIdForDeposit,
