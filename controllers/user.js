@@ -10,10 +10,8 @@ const getAllUsers = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
-  const userName = req.body.userName;
-  const cash = req.body.cash;
-  const credit = req.body.credit;
-  const user = new UserModel({ userName, cash, credit });
+  const { userId, userName, cash, credit } = req.body;
+  const user = new UserModel({ userId, userName, cash, credit });
   try {
     await user.save();
     res.status(200).send(user);
@@ -22,11 +20,19 @@ const addUser = async (req, res) => {
   }
 };
 const depositToUser = async (req, res) => {
-    const userId = req.body.userId;
-    const conditions = {
-        _id : userId
+  const { id, deposit } = req.body;
+  try {
+    const updatedUser = await UserModel.findById(id);
+    updatedUser.cash += deposit;
+    const user = await UserModel.findByIdAndUpdate(id, updatedUser, {
+      new: true,
+    });
+    if (!user) {
+      return res.status(404).send("NO SUCH USER..");
     }
-
-
-}
-module.exports = { getAllUsers, addUser ,depositToUser};
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
+module.exports = { getAllUsers, addUser, depositToUser };

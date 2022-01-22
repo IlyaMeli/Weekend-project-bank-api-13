@@ -5,6 +5,11 @@ const UsersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: Number,
+    unique: true,
+    required: true,
+  },
   cash: {
     type: Number,
     default: 0,
