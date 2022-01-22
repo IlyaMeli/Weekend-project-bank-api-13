@@ -4,13 +4,12 @@ const userRoute = require("./routes/user");
 const cors = require("cors");
 const path = require("path");
 const app = express();
-app.use(cors());
 app.use(express.json());
 app.use("/", userRoute);
 
 const port = process.env.PORT || 5000;
 
-const publicPath = path.join(__dirname, "client/build");
+const publicPath = path.join(__dirname, "client/build"); //www.ilyaRoot/client/bulid
 app.use(cors());
 app.use(express.static(publicPath));
 
