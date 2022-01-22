@@ -12,23 +12,29 @@ function App() {
   const [userCashDeposit, setUserCashForDeposit] = useState("");
 
   const deposit = async () => {
-    await myApi.put("/users/deposit", {
+    const { data } = await myApi.put("/users/deposit", {
       id: userIdForDeposit,
       deposit: Number(userCashDeposit),
     });
+    console.log(data);
+    const copyData = [...myData];
+    const updatedUser = copyData.findIndex((user) => user.id === data.id);
+    copyData[updatedUser] = data;
+    setMyData(copyData);
   };
 
   const getReq = async () => {
     const { data } = await myApi.get("/users");
     setMyData(data);
   };
-  const postUser = () => {
-    myApi.post("/users", {
+  const postUser = async () => {
+    const { data } = await myApi.post("/users", {
       userId: userIdValue,
       userName: userValue,
       cash: cashValue,
       credit: creditValue,
     });
+    setMyData((prev) => [...prev, data]);
   };
   const createData = () => {
     return myData.map((user) => {
@@ -56,7 +62,7 @@ function App() {
 
   useEffect(() => {
     getReq();
-  }, [myData]);
+  }, []);
 
   return (
     <div className="App">
