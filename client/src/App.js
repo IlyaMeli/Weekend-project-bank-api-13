@@ -10,7 +10,7 @@ function App() {
   const [creditValue, SetCreditValue] = useState(0);
   const [userIdForDeposit, setUserIdForDeposit] = useState("");
   const [userCashDeposit, setUserCashForDeposit] = useState("");
-  // console.log(process.env.NODE_ENV);
+  console.log(process.env.NODE_ENV);
 
   const PASSWORD = process.env.PASSWORD;
   console.log(PASSWORD);
