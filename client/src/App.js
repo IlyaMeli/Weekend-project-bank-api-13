@@ -35,7 +35,7 @@ function App() {
       return (
         <div key={user._id} className="user-wrap">
           <span>
-            <span className="user-title">_id:</span> {user._Id}
+            <span className="user-title">_id:</span> {user._id}
           </span>
           <span>
             <span className="user-title">ID:</span> {user.userId}
